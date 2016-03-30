@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>vux demo</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/airyland/vux/master/vux.css">
+    <style>
+    {{data.style}}
+    </style>
+    <script src="https://cdn.rawgit.com/airyland/vux/master/examples/vue.min.1.0.18.js"></script>
+    {{#each data.components}}
+    <script src="https://rawgit.com/airyland/vux/master/components/{{this}}/index.js"></script>
+    {{/each}}
+  </head>
+  <body>
+    <div id="demo">
+      {{{data.template}}}
+    </div>
+    <script>
+    {{#each data.components}}
+      Vue.component('{{this}}', vux{{capitalizeFirstLetter this}})
+    {{/each}}
+    new Vue({
+      el: '#demo'
+    })
+    </script>
+  </body>
+</html>
