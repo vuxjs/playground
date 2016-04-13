@@ -8,7 +8,12 @@
     {{data.style}}
     </style>
     <script src="https://vux.li/gitfile/examples/vue.min.1.0.18.js"></script>
+    <!--components-->
     {{#each data.components}}
+    <script src="https://vux.li/gitfile/components/{{tag}}/index.js"></script>
+    {{/each}}
+    <!--filters-->
+    {{#each data.filters}}
     <script src="https://vux.li/gitfile/components/{{tag}}/index.js"></script>
     {{/each}}
   </head>
@@ -17,9 +22,16 @@
       {{{data.template}}}
     </div>
     <script>
+    // register components
     {{#each data.components}}
       Vue.component('{{tag}}', {{umd}})
     {{/each}}
+
+    // register filters
+    {{#each data.filters}}
+      Vue.filter('{{tag}}', {{umd}})
+    {{/each}}
+
     new Vue({
       el: '#demo',
       {{{data.script}}}
