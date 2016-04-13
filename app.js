@@ -12,7 +12,7 @@ router.get('/api/v1/demo.html', function *(next) {
    return
   }
   this.query.components = this.query.components.split(',').map(parse)
-  this.query.filters = this.query.filters.split(',').map(parse)
+  this.query.filters = this.query.filters ? this.query.filters.split(',').map(parse) : []
   this.query.script = this.query.script ? this.query.script.match(/export default \{([\s\S]*?)\}$/)[1]:''
   yield this.render("code", {
     title: "demo",
